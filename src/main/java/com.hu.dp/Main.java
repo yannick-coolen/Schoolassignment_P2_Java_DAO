@@ -23,8 +23,6 @@ public class Main {
     }
 
     private static Connection getConnection() {
-        Dotenv dotenv = Dotenv.load();
-
         String jdbcurl = /* LET OP!*/ "jdbc:postgresql://<naam van de host>:<naam van de port>/<naam van de DB>";
         String username = /* LET OP!*/ "<Voer de naam van de username in om in de PostgreSQL DB in te loggen>";
         String password = /* LET OP!*/ "<Voer de wachtwoord in om in de PostgreSQL DB in te loggen>";
