@@ -1,10 +1,10 @@
-package com.hu.dp;
+package com.dp;
 
+import com.dp.persistentie.ReizigerDAO;
+import com.dp.persistentie.ReizigerDAOsql;
 import io.github.cdimascio.dotenv.Dotenv;
 
-import com.hu.dp.domein.Reiziger;
-import com.hu.dp.persistentie.ReizigerDAO;
-import com.hu.dp.persistentie.ReizigerDAOsql;
+import com.dp.domein.Reiziger;
 
 import java.sql.Connection;
 import java.sql.Date;

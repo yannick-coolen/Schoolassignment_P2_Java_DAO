@@ -1,6 +1,6 @@
-package com.hu.dp.persistentie;
+package com.dp.persistentie;
 
-import com.hu.dp.domein.Reiziger;
+import com.dp.domein.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;
