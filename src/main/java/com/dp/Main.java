@@ -21,9 +21,11 @@ public class Main {
     }
 
     private static Connection getConnection() {
-        String jdbcurl = /* LET OP!*/ "jdbc:postgresql://<naam van de host>:<naam van de port>/<naam van de DB>";
-        String username = /* LET OP!*/ "<Voer de naam van de username in om in de PostgreSQL DB in te loggen>";
-        String password = /* LET OP!*/ "<Voer de wachtwoord in om in de PostgreSQL DB in te loggen>";
+        Dotenv dotenv = Dotenv.load();
+
+        String jdbcurl = "jdbc:postgresql://localhost:5432/ovchip";
+        String username = "postgres";
+        String password = dotenv.get("POSTGRES_SECRET");
 
         try {
             if (connection == null) {
