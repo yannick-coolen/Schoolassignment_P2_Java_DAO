@@ -1,4 +1,4 @@
-package com.hu.dp.domein;
+package com.dp.domein;
 
 import java.sql.Date;
 
