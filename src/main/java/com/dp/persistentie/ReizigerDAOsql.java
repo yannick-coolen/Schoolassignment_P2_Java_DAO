@@ -23,8 +23,9 @@ public class ReizigerDAOsql implements ReizigerDAO {
             pst.setString(3, reiziger.getTussenvoegsel());
             pst.setString(4, reiziger.getAchternaam());
             pst.setDate(5, reiziger.getGeboortedatum());
-
-            return pst.executeUpdate() > 0;
+            pst.executeUpdate();
+            pst.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("(Toevoeging mislukt)");
@@ -34,11 +35,9 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
     // update reiziger
     public boolean update(Reiziger reiziger) {
-        String query =
-                "UPDATE reiziger " +
-                        "SET voorletters = ?, tussenvoegsel = ?, achternaam = ?, geboortedatum = ? " +
-                        "WHERE reiziger_id = ?";
-
+        String query = "UPDATE reiziger " +
+                "SET voorletters = ?, tussenvoegsel = ?, achternaam = ?, geboortedatum = ? " +
+                "WHERE reiziger_id = ?";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, reiziger.getNaam());
@@ -50,7 +49,9 @@ public class ReizigerDAOsql implements ReizigerDAO {
             System.out.println(String.format("Update van ID gebruiker %d succesvol voltooid",
                     reiziger.getId()));
 
-            return pst.executeUpdate() > 0;
+            pst.executeUpdate();
+            pst.close();
+            return true;
         } catch(SQLException e) {
             e.printStackTrace();
             System.err.println("Update mislukt");
@@ -60,17 +61,20 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
     // delete reiziger
     public boolean delete(Reiziger reiziger) {
-        String query = "DELETE FROM reiziger WHERE reiziger_id = ?";
+        String query = "DELETE FROM reiziger WHERE reiziger_id = ? NOTNULL";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, reiziger.getId());
 
-            System.out.println(String.format("Reiziger met ID %d succesvol uit de DB verwijderd",
-                    reiziger.getId()));
-            return pst.executeUpdate() > 0;
+//            System.out.println(String.format("Reiziger met ID %d succesvol uit de DB verwijderd",
+//                    reiziger.getId()));
+            pst.executeUpdate();
+            pst.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("Verwijdering mislukt");
+            System.err.printf("Verwijdering van reiziger %d mislukt",
+                    reiziger.getId());
         }
         return false;
     }
@@ -93,6 +97,7 @@ public class ReizigerDAOsql implements ReizigerDAO {
                 reiziger.setGeboortedatum(rs.getDate(5));
             }
             rs.close();
+            pst.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,6 +124,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
                 reizigerList.add(reiziger);
             }
+            rs.close();
+            pst.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -144,6 +151,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
                 reizigerList.add(reiziger);
             }
+            rs.close();
+            pst.close();
         } catch(SQLException e) {
             e.printStackTrace();
         }
