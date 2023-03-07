@@ -35,7 +35,9 @@ public class Reiziger {
     }
 
     public void setNaam(String voorletters) {
-        this.voorletters = voorletters;
+        if (voorletters != null) {
+            this.voorletters = voorletters;
+        }
     }
 
     public String getTussenvoegsel() {
@@ -43,7 +45,9 @@ public class Reiziger {
     }
 
     public void setTussenvoegsel(String tussenvoegsel) {
-        this.tussenvoegsel = tussenvoegsel;
+        if (tussenvoegsel != null) {
+            this.tussenvoegsel = tussenvoegsel;
+        }
     }
 
     public String getAchternaam() {
@@ -51,7 +55,9 @@ public class Reiziger {
     }
 
     public void setAchternaam(String achternaam) {
-        this.achternaam = achternaam;
+        if (achternaam != null) {
+            this.achternaam = achternaam;
+        }
     }
 
     public Date getGeboortedatum() {
@@ -59,7 +65,9 @@ public class Reiziger {
     }
 
     public void setGeboortedatum(Date geboortedatum) {
-        this.geboortedatum = geboortedatum;
+        if (geboortedatum != null) {
+            this.geboortedatum = geboortedatum;
+        }
     }
 
     @Override
