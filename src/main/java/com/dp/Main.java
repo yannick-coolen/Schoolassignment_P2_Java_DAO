@@ -24,19 +24,15 @@ public class Main {
     }
 
     private static Connection getConnection() {
-        Dotenv dotenv = Dotenv.load();
-
-        String jdbcurl = "jdbc:postgresql://localhost:5432/ovchip";
-        String username = "postgres";
-        String password = dotenv.get("POSTGRES_SECRET");
-
+        String jdbcurl = /* LET OP!*/ "jdbc:postgresql://<naam van de host>:<naam van de port>/<naam van de DB>";
+        String username = /* LET OP!*/ "<Voer de naam van de username in om in de PostgreSQL DB in te loggen>";
+        String password = /* LET OP!*/ "<Voer de wachtwoord in om in de PostgreSQL DB in te loggen>";
         try {
             if (connection == null) {
                 connection = DriverManager.getConnection(jdbcurl,username,password);
 
-                System.out.println("Verbonden met de database");
+                System.out.println("Connected to the database");
                 System.out.println("=======================");
-                System.out.println("Connected");
 
                 ReizigerDAOsql reizigerDAOsql = new ReizigerDAOsql(connection);
 //                testReizigerDAO(reizigerDAOsql);
