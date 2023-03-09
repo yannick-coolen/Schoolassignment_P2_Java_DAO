@@ -27,9 +27,8 @@ public class Main {
             if (connection == null) {
                 connection = DriverManager.getConnection(jdbcurl,username,password);
 
-                System.out.println("Verbonden met de database");
+                System.out.println("Connected to the database");
                 System.out.println("=======================");
-                System.out.println("Connected");
 
                 ReizigerDAOsql reizigerDAOsql = new ReizigerDAOsql(connection);
                 testReizigerDAO(reizigerDAOsql);
