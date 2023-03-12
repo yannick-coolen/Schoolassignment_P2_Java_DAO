@@ -24,7 +24,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
             pst.setString(4, reiziger.getAchternaam());
             pst.setDate(5, reiziger.getGeboortedatum());
 
-            return pst.executeUpdate() > 0;
+            pst.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("(Toevoeging mislukt)");
@@ -50,7 +51,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
             System.out.println(String.format("Update van ID gebruiker %d succesvol voltooid",
                     reiziger.getId()));
 
-            return pst.executeUpdate() > 0;
+            pst.close();
+            return true;
         } catch(SQLException e) {
             e.printStackTrace();
             System.err.println("Update mislukt");
@@ -67,7 +69,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
             System.out.println(String.format("Reiziger met ID %d succesvol uit de DB verwijderd",
                     reiziger.getId()));
-            return pst.executeUpdate() > 0;
+            pst.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Verwijdering mislukt");
@@ -93,6 +96,7 @@ public class ReizigerDAOsql implements ReizigerDAO {
                 reiziger.setGeboortedatum(rs.getDate(5));
             }
             rs.close();
+            pst.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,6 +123,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
                 reizigerList.add(reiziger);
             }
+            rs.close();
+            pst.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -144,6 +150,8 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
                 reizigerList.add(reiziger);
             }
+            rs.close();
+            pst.close();
         } catch(SQLException e) {
             e.printStackTrace();
         }
